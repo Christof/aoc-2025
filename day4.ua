@@ -14,9 +14,8 @@ Input ← &fras "day4.txt"
 SplitByLine   ← ⊜∘⊸≠@\n
 RemovePadding ← ⍜(⍉|↘¯1↘1) ↘¯1↘1
 SumOfAdjacentRolls ← (
-  ⍜(⊡ 1_1|⋅@ ) # Set center to space to ignore it
-  =@@          # Mark rolls
-  /+/+         # Count rolls
+  =@@  # Mark rolls
+  /+/+ # Count rolls
 )
 
 Part₁ ← (
@@ -24,7 +23,7 @@ Part₁ ← (
   ⤙=@@  # Create mask with rolls for later
   ⬚@.⧈SumOfAdjacentRolls 3_3
   RemovePadding
-  <4 # Accessible by forklifts if there fewer than 4 rolls
+  <5 # Accessible by forklifts if there fewer than 4 rolls (+1 for center piece)
   ×  # Apply mask with rolls
   /+/+
 )
