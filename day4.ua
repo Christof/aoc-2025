@@ -16,7 +16,7 @@ SplitByLine ← ⊜∘⊸≠@\n
 
 SumOfAdjacentRolls ← (
   =@@  # Mark rolls
-  /+/+ # Count rolls
+  ⧻⊚   # Count rolls
 )
 
 AccessibilityMask ← (
@@ -29,7 +29,7 @@ AccessibilityMask ← (
 Part₁ ← (
   SplitByLine
   AccessibilityMask
-  /+/+
+  ⧻⊚
 )
 
 ˙⍤ =13 Part₁ ExampleInput
@@ -41,11 +41,11 @@ Part₂ ← (
   # Fix point iteartion by replacing all 1 in AccessibilityMask with x
   ⊸⍥(⍜♭(⍜▽(⋅@x)) ⊙♭⊸AccessibilityMask) ∞
   # Count rolls in input and after they have been removed
-  ∩(/+/+=@@)
+  ∩(⧻⊚=@@)
   # Difference tells us how many have been removed
   -
 )
 
 ˙⍤ =43 Part₂ ExampleInput
 
-Part₂ Input
+⍜now(Part₂ Input)
