@@ -14,14 +14,10 @@ Input ← &fras "day4.txt"
 
 SplitByLine ← ⊜∘⊸≠@\n
 
-SumOfAdjacentRolls ← (
-  ⧻⊚ # Count rolls
-)
-
 AccessibilityMask ← (
-  ⊸⬚0⧈SumOfAdjacentRolls [3_3 1_1 1_1] # 3x3 window with stride 1x1 and 1x1 padding
-  <5                                   # Accessible by forklifts if there fewer than 4 rolls (+1 for center piece)
-  ×                                    # Apply mask with rolls
+  ⊸⬚0⧈(⧻⊚) [3_3 1_1 1_1] # 3x3 window with stride 1x1 and 1x1 padding
+  <5                     # Accessible by forklifts if there fewer than 4 rolls (+1 for center piece)
+  ×                      # Apply mask with rolls
 )
 
 Part₁ ← (
