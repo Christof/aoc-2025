@@ -20,6 +20,10 @@ AccessibilityMask ← (
   ×                      # Apply mask with rolls
 )
 
+# Another version using built-in constants for adjacency and corner offsets
+# The input is rotated around those and then summed
+AccessibilityMask₂ ← ×<4 ⊸(/+≡⌟⬚0↻ ⊂C₂A₂)
+
 Part₁ ← (
   SplitByLine
   =@@
@@ -35,7 +39,7 @@ Part₂ ← (
   SplitByLine
   =@@
   # Fix point iteartion by replacing all 1 in AccessibilityMask with 0
-  ⊸⍥(-⊸AccessibilityMask) ∞
+  ⊸⍥(-⊸AccessibilityMask₂) ∞
   # Count rolls in input and after they have been removed
   ∩(⧻⊚)
   # Difference tells us how many have been removed
