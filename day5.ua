@@ -23,15 +23,37 @@ Part₁ ← (
 
 ˙⍤=3 Part₁ ExampleInput
 
-Part₁ Input
+# Part₁ Input
 
 Part₂ ← (
   ⊚⊸⌕ "\n\n"      # Get index of empty line
   Ranges↙         # Parse fresh ingredient ranges
   ≡(+⊙⊢□⇡+1-⊸⊃⊢⊣) # Create fresh ingredient IDs
-  ⧻◴°□/⍚⊂         # Combine ID ranges and count unique
+  ⧻◇◴/⍚⊂          # Combine ID ranges and count unique
 )
 
 ˙⍤=14 Part₂ ExampleInput
 
-Part₂ Input
+EnsureEvenRows ← ⨬(∘|⊂ ⊸⊢)⊸(◿2⧻)
+Combine₂       ← □⨬(∘|[⊟⊃(⊢|/↥↘1)⊡ [0_0 0_1 1_1]]) ⊸(≤⊃⊢⊣⊡ [0_1 1_0])
+CombineRanges  ← °□⊢/⍚⊂⧈(Combine₂) [2_2 2_2 0_0] EnsureEvenRows⍆
+
+˙⍤≍[1_7 15_20] CombineRanges [1_7 15_20] # none overlapping ranges
+˙⍤≍[12_20] CombineRanges [12_17 15_20]   # overlapping ranges
+˙⍤≍[10_20] CombineRanges [10_20 12_17]   # one range inside the other
+˙⍤≍[1_12 10_20] CombineRanges [1_12 10_20 12_17]
+
+# Part₂ Input # Doesn't work because of too large numbers
+
+Part₂₁ ← (
+  ⊚⊸⌕ "\n\n"
+  Ranges↙
+  ⍥CombineRanges ∞
+  ≡/-
+  +1
+  /+
+)
+
+˙⍤=14 Part₂₁ ExampleInput
+
+Part₂₁ Input
