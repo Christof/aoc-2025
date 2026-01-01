@@ -54,6 +54,24 @@ Part₂₁ ← (
   /+
 )
 
+
 ˙⍤=14 Part₂₁ ExampleInput
 
-Part₂₁ Input
+⍜now(Part₂₁ Input)
+
+Part₂₂ ← (
+  ⊚⊸⌕ "\n\n"
+  Ranges↙
+  ≡(+0_1)       # Add one to end of range to be inclusive
+  ⟜⊸(˜↯ 1_¯1 ⧻) # Create array for range starts +1 and ends -1
+  ∩₃♭
+  ∩⌞⊏⍏     # Sort +1,-1 array and input by indices of input
+  ±\+      # Accumulate +1,-1 and get sign to have a mask
+  ⊃(⊜⊢|▽¬) # start and end range values
+  /+-      # values in range and sum over all ranges
+)
+
+˙⍤=14 Part₂₂ ExampleInput
+
+⍜now(Part₂₂ Input)
+
