@@ -11,11 +11,23 @@ ExampleInput ← $ L68
 
 Input ← &fras "day1.txt"
 
-RemoveR   ← ▽ ⊸≠@R
-ReplaceL  ← ⍜▽(@-◌) ⊸=@L
-Rotations ← ⊂50 ⊜(⋕ ReplaceL RemoveR) ⊸≠@\n
+RemoveR       ← ▽ ⊸≠@R
+ReplaceL      ← ⍜▽(@-◌) ⊸=@L
+Rotations     ← ⊂50 ⊜(⋕ ReplaceL RemoveR) ⊸≠@\n
+LandingOnZero ← =0 \(◿100+)
 
-Part₁ ← /+ = 0 \(◿100+) Rotations
+Part₁ ← /+ LandingOnZero Rotations
 
 ˙⍤=3 Part₁ ExampleInput
 Part₁ Input
+
+Part₂ ← (
+  ⊜(⊓(-1×2⨂"LR")⋕°⊂)⊸≠@\n # Parse LR to -1 +1 and rotations
+  ˜▽                      # Convert rotations into -1 or +1 rotations
+  ⊂50                     # add start position
+  LandingOnZero           # use logic from part one
+  /+
+)
+
+˙⍤=6 Part₂ ExampleInput
+Part₂ Input
